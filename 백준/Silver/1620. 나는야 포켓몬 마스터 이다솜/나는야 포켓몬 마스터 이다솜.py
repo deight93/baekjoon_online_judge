@@ -11,3 +11,4 @@ for i in range(m):
         print(p_d[int(q)-1])
 
 
+
