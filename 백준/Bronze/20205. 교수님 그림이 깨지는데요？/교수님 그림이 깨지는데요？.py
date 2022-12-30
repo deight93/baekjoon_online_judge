@@ -1,13 +1,15 @@
-n, k = map(int, input().split())
+import sys
 
-list1 = []
+n, k = map(int, sys.stdin.readline().rstrip().split(" "))
+a = [list(map(int, sys.stdin.readline().rstrip().split(" "))) for i in range(n)]
 
-for i in range(n):
-    list1.append(list(map(int, input().split())))
+temp = []
+for i in range(k*n):
+    temp2 = []
+    for j in a[i//k]:
+        temp2 += ([str(j)]*k)
+    temp.append(temp2)
 
-for i in range(n):
-    for l in range(k):
-        for j in range(n):
-            for m in range(k):
-                print(list1[i][j], end = ' ')
-        print()
+for i in temp:
+    print(" ".join(i))
+
