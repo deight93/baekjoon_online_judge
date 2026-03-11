@@ -3,6 +3,10 @@ from itertools import combinations
 n, k = map(int, input().split())
 hp = [list(map(int, input().split())) for _ in range(n)]
 
+if n == k:
+    print(0)
+    exit()
+
 mr = []
 for cp in combinations(hp, k):
     r = []
