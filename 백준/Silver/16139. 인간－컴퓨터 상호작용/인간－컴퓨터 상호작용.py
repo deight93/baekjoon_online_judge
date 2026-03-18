@@ -1,5 +1,7 @@
-s = input().strip()
-n = int(input())
+import sys
+
+s = sys.stdin.readline().rstrip()
+n = int(sys.stdin.readline())
 
 prefix = [[0] * (len(s) + 1) for _ in range(26)]
 
@@ -12,7 +14,7 @@ for i in range(len(s)):
             prefix[j][i+1] = prefix[j][i]
 
 for _ in range(n):
-    a, l, r = input().split()
+    a, l, r = sys.stdin.readline().split()
     l = int(l)
     r = int(r)
 
