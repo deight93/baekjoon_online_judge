@@ -1,25 +1,28 @@
 import sys
 
-n = int(sys.stdin.readline())
-e = int(sys.stdin.readline())
-input_list = [[int(j) for j in sys.stdin.readline().rstrip().split(" ")] for i in range(e)]
+computer_nums = int(sys.stdin.readline())
+couple_nums = int(sys.stdin.readline())
 
-temp = []
-for i in input_list:
-    if 1 in i:
-        temp += i
-        input_list.remove(i)
+arr = [[] for _ in range(computer_nums + 1)]
+for _ in range(couple_nums):
+    a, b = map(int, sys.stdin.readline().split())
+    arr[a].append(b)
+    arr[b].append(a)
 
-temp = list(set(temp))
-while True:
-    k = len(temp)
-    for i in input_list:
-        for j in i:
-            if j in temp:
-                temp += i
-    temp = list(set(temp))
-    if len(temp) == k:
-        break
+visited = [False] * (computer_nums + 1)
 
-temp.remove(1)
-print(len(temp))
+def dfs(start, cnt):
+    visited[start] = True
+    for next_node in arr[start]:
+        if not visited[next_node]:
+            cnt += 1
+            cnt = dfs(next_node, cnt)
+    return cnt
+
+r = 0
+for i in range(1, computer_nums + 1):
+    cnt = 0
+    if not visited[i]:
+        max_cnt = dfs(i, cnt)
+        r = max(r, max_cnt)
+print(r)
